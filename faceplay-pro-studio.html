@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FacePlay Pro Studio</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f0f0; }
+        header { background-color: #6200ea; color: white; padding: 10px; text-align: center; }
+        main { padding: 20px; }
+        .photo { margin-bottom: 20px; }
+        button { background-color: #6200ea; color: white; border: none; padding: 10px 20px; cursor: pointer; }
+        button:hover { background-color: #3700b3; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FacePlay Pro Studio</h1>
+    </header>
+    <main>
+        <div id="photoContainer"></div>
+        <button id="addPhotoBtn">Add Photo</button>
+    </main>
+    <script>
+        const photoContainer = document.getElementById('photoContainer');
+        const addPhotoBtn = document.getElementById('addPhotoBtn');
+        let photos = [];
+
+        addPhotoBtn.addEventListener('click', () => {
+            const photoUrl = prompt('Enter photo URL:');
+            if (photoUrl) {
+                photos.push(photoUrl);
+                renderPhotos();
+            }
+        });
+
+        function renderPhotos() {
+            photoContainer.innerHTML = '';
+            photos.map((url, idx) => {
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = `Photo ${idx + 1}`;
+                img.classList.add('photo');
+                img.style.width = '100%';
+                photoContainer.appendChild(img);
+            });
+        }
+    </script>
+</body>
+</html>
